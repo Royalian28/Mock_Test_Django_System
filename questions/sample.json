@@ -1,0 +1,122 @@
+[
+    {
+        "question": "What is the capital of France?",
+        "choices": [
+            "Berlin",
+            "Madrid",
+            "Paris",
+            "Rome"
+        ],
+        "answer": [
+            2
+        ]
+    },
+    {
+        "question": "Which planet is known as the Red Planet?",
+        "choices": [
+            "Earth",
+            "Venus",
+            "Mars",
+            "Jupiter"
+        ],
+        "answer": [
+            2
+        ]
+    },
+    {
+        "question": "Who wrote 'Hamlet'?",
+        "choices": [
+            "Leo Tolstoy",
+            "William Shakespeare",
+            "Mark Twain",
+            "Charles Dickens"
+        ],
+        "answer": [
+            1
+        ]
+    },
+    {
+        "question": "What is the largest ocean on Earth?",
+        "choices": [
+            "Atlantic Ocean",
+            "Indian Ocean",
+            "Arctic Ocean",
+            "Pacific Ocean"
+        ],
+        "answer": [
+            3
+        ]
+    },
+    {
+        "question": "Which element has the chemical symbol 'O'?",
+        "choices": [
+            "Gold",
+            "Oxygen",
+            "Osmium",
+            "Iron"
+        ],
+        "answer": [
+            1
+        ]
+    },
+    {
+        "question": "What is the square root of 64?",
+        "choices": [
+            "6",
+            "7",
+            "8",
+            "9"
+        ],
+        "answer": [
+            2
+        ]
+    },
+    {
+        "question": "In which year did World War II end?",
+        "choices": [
+            "1945",
+            "1939",
+            "1918",
+            "1965"
+        ],
+        "answer": [
+            0
+        ]
+    },
+    {
+        "question": "Which is the smallest prime number?",
+        "choices": [
+            "1",
+            "2",
+            "3",
+            "5"
+        ],
+        "answer": [
+            1
+        ]
+    },
+    {
+        "question": "What is H2O commonly known as?",
+        "choices": [
+            "Hydrogen",
+            "Water",
+            "Oxygen",
+            "Steam"
+        ],
+        "answer": [
+            1
+        ]
+    },
+    {
+        "question": "Which language is primarily spoken in Brazil?",
+        "choices": [
+            "Spanish",
+            "Portuguese",
+            "French",
+            "English"
+        ],
+        "answer": [
+            1
+        ]
+    }
+]

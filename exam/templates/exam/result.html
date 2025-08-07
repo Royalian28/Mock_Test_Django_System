@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam Results</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .correct { color: green; font-weight: bold; }
+        .wrong { color: red; font-weight: bold; }
+        .question-block { margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Your Result</h2>
+    <p><strong>Score:</strong> {{ result.score }} / {{ result.total }}</p>
+    <p><strong>Correct:</strong> {{ result.correct }}</p>
+    <p><strong>Wrong:</strong> {{ result.wrong }}</p>
+    <p><strong>Unanswered:</strong> {{ result.unanswered }}</p>
+
+    <hr>
+
+    <h2>Question-wise Analysis</h2>
+
+    {% for item in feedback %}
+        <div class="question-block">
+            <p><strong>Q{{ forloop.counter }}. {{ item.question }}</strong></p>
+            <ul>
+                {% for choice in item.choices %}
+                    <li>
+                        {% if forloop.counter0 in item.correct_answers %}
+                            ✅ <span class="correct">{{ choice }}</span>
+                        {% elif forloop.counter0 in item.user_answers %}
+                            ❌ <span class="wrong">{{ choice }}</span>
+                        {% else %}
+                            {{ choice }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>Status: 
+                {% if item.is_correct %}
+                    <span class="correct">Correct</span>
+                {% elif item.user_answers %}
+                    <span class="wrong">Wrong</span>
+                {% else %}
+                    Not Answered
+                {% endif %}
+            </p>
+        </div>
+    {% endfor %}
+    <form method="get" action="{% url 'download_pdf' %}">
+    <button type="submit">Save Result as PDF</button>
+    </form>
+</body>
+</html>

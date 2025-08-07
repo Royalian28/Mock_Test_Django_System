@@ -1,0 +1,22 @@
+<!-- exam/templates/upload.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Exam</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Upload and Start Mock Exam</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Start Exam</button>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,149 @@
+{% load custom_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mock Exam</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        .main-container {
+            width: 75%;
+            padding: 20px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+        }
+
+        .choices input {
+            margin-right: 10px;
+        }
+
+        .palette {
+            width: 25%;
+            padding: 20px;
+            border-left: 2px solid #ccc;
+        }
+
+        .circle {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid #333;
+            text-decoration: none;
+            color: black;
+        }
+
+        .circle.answered {
+            background-color: #4CAF50; /* green */
+            color: white;
+        }
+
+        .timer {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        .nav-buttons {
+            margin-top: 30px;
+        }
+
+        .nav-buttons button {
+            margin-right: 10px;
+            padding: 10px 20px;
+        }
+    </style>
+
+    <script>
+        let timeLeft = Number("{{ time_left|default:0 }}");
+        function startTimer() {
+            const timer = document.getElementById("timer");
+            const interval = setInterval(() => {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                timer.textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    alert("Time's up! Exam will be submitted.");
+                    window.location.href = "{% url 'submit_exam' %}";
+                }
+                timeLeft--;
+            }, 1000);
+        }
+        window.onload = startTimer;
+    </script>
+</head>
+<body>
+
+    <div class="timer" id="timer"></div>
+
+    <div class="main-container">
+        <h2>Question {{ q_index|add:1 }} of {{ total }}</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="question-box">
+                <p><strong>{{ question.question }}</strong></p>
+                <div class="choices">
+                    {% for choice in question.choices %}
+                        {% if is_multiple %}
+                            <label>
+                                <input type="checkbox" name="choice" value="{{ forloop.counter0 }}"
+                                    {% if forloop.counter0 in answers %}checked{% endif %}>
+                                {{ choice }}
+                            </label><br>
+                        {% else %}
+                            <label>
+                                <input type="radio" name="choice" value="{{ forloop.counter0 }}"
+                                    {% if forloop.counter0 in answers %}checked{% endif %}>
+                                {{ choice }}
+                            </label><br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                {% if q_index > 0 %}
+                    <button type="submit" name="prev">Previous</button>
+                {% endif %}
+
+                {% if q_index < total|add:-1 %}
+                    <button type="submit" name="next">Next</button>
+                {% endif %}
+
+                {% if q_index == total|add:-1 %}
+                    <button type="submit" name="finish" style="background-color: red; color: white;">Finish</button>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+<div class="palette">
+    <h3>Question Palette</h3>
+    {% for i in total|get_range %}
+        <a href="{% url 'exam' %}?q={{ i }}"
+           class="circle {% if palette|get_item:i %}answered{% endif %}">
+            {{ i|add:1 }}
+        </a>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>
+
