@@ -17,9 +17,15 @@ A complete web-based **Mock Test Platform** built using Django — featuring cus
 
 ## 🖼 UI Screenshots
 
-| Upload Page | Exam Page | Result Page |
-|-------------|-----------|-------------|
-| ![upload](screenshots/upload.png) | ![exam](screenshots/exam.png) | ![result](screenshots/result.png) |
+Upload Page 
+<img width="1920" height="867" alt="Screenshot (69)" src="https://github.com/user-attachments/assets/7377f178-1bb8-4e02-826e-af63e91f22df" />
+
+Exam Page 
+<img width="1920" height="867" alt="Screenshot (71)" src="https://github.com/user-attachments/assets/c7f2dd96-599b-4dc3-ac24-874c71afbc2f" />
+
+Result Page 
+<img width="1920" height="909" alt="Screenshot (72)" src="https://github.com/user-attachments/assets/1f46e548-d3b9-4c13-95d9-308e3c8caa78" />
+
 
 
 
